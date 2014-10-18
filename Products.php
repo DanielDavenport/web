@@ -63,7 +63,6 @@ color:#2f2f2f;
 #contain2{
 margin-left:auto; margin-right:auto;
 text-align: center; 
-margin-top:50px;
 font-size:10px;
 color:#3d3d3d;
 padding-top:10px;
@@ -129,17 +128,56 @@ h3{
    height: 50px; width: 70px; overflow: auto;
    font-size: 10px; color: #757575;
 }
-
+    
+#navigation{
+        font-size:16px;
+    width: 100%;
+    height: 25px;
+    padding-top: 5px;
+    text-align: center;
+    background-color: #000000;
+    -webkit-border-bottom-right-radius: 50px;
+-webkit-border-bottom-left-radius: 50px;
+-moz-border-radius-bottomright: 50px;
+-moz-border-radius-bottomleft: 50px;
+border-bottom-right-radius: 50px;
+border-bottom-left-radius: 50px;     
+}
+    
+#navigation a{
+        margin-left: 35px;
+        color: #cccccc;
+        font-family: Verdana;
+        font-style: italic;
+    }
+    
+#navigation a:hover{
+        color: #ffffff;
+    }
 
 </style><meta http-equiv="x-dns-prefetch-control" content="off"/><script type="text/javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?_v=83c002e9bd947a7c3a044efdde3ef9c0"></script><meta http-equiv="x-dns-prefetch-control
 " content="off"/></head>
 
 <body>
+
+    <div id="navigation">
+    
+        <a href="/">home
+        <img src="https://openclipart.org/image/800px/svg_to_png/14720/abadr_Highway.png" height="20px"></a>
+        <a href="/">account
+        <img src="http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png" height="20px"></a>
+        <a href="/">products
+        <img src="http://pngimg.com/upload/cherry_PNG623.png" height="20px"></a>
+        <a href="/">cart
+        <img src="http://www.robmcintosh.ca/images/shoppingCart.png" height="20px"></a>
+    
+    </div>
+    
 <div id="contain2">
 
 <div id="title">Products</div>
 <div id="underneath">
-<a href="/">home</a> | <a href="/ask">ask</a><br><div style="text-transform:lowercase; letter-spacing:1.5px"></div></div>
+<a href="/">home</a> </div>
 
 
 <?php
@@ -246,7 +284,7 @@ foreach( $sortoptions as $var => $interest ){
 echo "
         </select>
 
-        <button id='searchbutton'  class ='text ui-widget-content ui-corner-all' >Go!</button>
+        <button class ='text ui-widget-content ui-corner-all' >Go!</button>
     </fieldset>
 
 </form> ";
