@@ -2,7 +2,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script
 >
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
-<script src="//bgrins.github.io/spectrum/spectrum.js" type="text/javascript"></script>
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <?php
@@ -25,6 +25,7 @@ if (mysqli_connect_error())
 
 <head>
 <title> blonic original character do not steal </title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <link rel="shortcut icon" href="http://i1144.photobucket.com/albums/o488/incarce
 rempb/Icons/MonsterGirls/tinycyclops.png">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?fam
@@ -44,13 +45,13 @@ a:active { color: #000000; text-decoration: none}
 
 body{
 background-color:#ffffff;
-font-family: arial;
+font-family: verdana;
 color:#2f2f2f;
+font-size: 11px;
 }
 
 
 #contain2{
-margin-left:auto; margin-right:auto;
 text-align: center; 
 margin-top:50px;
 font-size:10px;
@@ -107,12 +108,10 @@ background-color: transparent;
 
 h1{
     font-size:14px; font-style:italic; font-family:georgia;
-    border-radius:50px;
     padding-top:2px; padding-bottom:2px;
     text-align:center;
-    width:240px; margin-left:5px;
     color:#cccccc;
-    background-color: #2f2f2f;
+    display: inline;
 }
 
 h3{
@@ -124,37 +123,110 @@ h3{
 
     
 #longDescription{
-   padding-left: 10px;
    max-height: 400px; width: 300px; overflow: auto;
    font-size: 11px; color: #757575;
 }
 
+.divider{
+        width: 300px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-color: #cccccc;
+}
+    
+ #navigation{
+    font-size:16px;
+    width: 100%;
+    height: 25px;
+    padding-top: 5px;
+    text-align: center;
+    background-color: #000000;
+    -webkit-border-bottom-right-radius: 50px;
+-webkit-border-bottom-left-radius: 50px;
+-moz-border-radius-bottomright: 50px;
+-moz-border-radius-bottomleft: 50px;
+border-bottom-right-radius: 50px;
+border-bottom-left-radius: 50px;     
+}
+    
+#navigation a{
+        margin-left: 35px;
+        color: #cccccc;
+        font-family: Verdana;
+        font-style: italic;
+    }
+    
+#navigation a:hover{
+        color: #ffffff;
+    }
 
-</style><meta http-equiv="x-dns-prefetch-control" content="off"/><script type="text/javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?_v=83c002e9bd947a7c3a044efdde3ef9c0"></script><meta http-equiv="x-dns-prefetch-control
-" content="off"/></head>
+
+</style></head>
 
 <body>
+
+    <div id="navigation">
+    
+        <a href="/">home
+        <img src="https://openclipart.org/image/800px/svg_to_png/14720/abadr_Highway.png" height="20px"></a>
+        <a href="/">account
+        <img src="http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png" height="20px"></a>
+        <a href="/">products
+        <img src="http://pngimg.com/upload/cherry_PNG623.png" height="20px"></a>
+        <a href="/">cart
+        <img src="http://www.robmcintosh.ca/images/shoppingCart.png" height="20px"></a>
+    
+    </div>
+
 <div id="contain2">
 
 <div id="title">Product</div>
 <div id="underneath">
-<a href="/">home</a> | <a href="/ask">ask</a><br><div style="text-transform:lowercase; letter-spacing:1.5px"></div></div>
+<a href="/">home</a></div>
 
 <?php
 
-$productid = $_REQUEST['productid'];
+if(isset($_GET['productid']))
+{
+    $productid = $_GET['productid'];
+
+} else {
+    $productid = 0;
+}
+
 $QryStr = "SELECT * FROM Products WHERE pid = $productid";
 $Results = mysqli_query($mysqli, $QryStr) or
     die("Failed Query $QryStr: " . mysqli_error($mysqli));
 
 $Product = mysqli_fetch_object($Results);
-echo "<TABLE ALIGN='center'><TR><TD>";
+echo "<TABLE ALIGN='CENTER'><TR><TD>";
 echo "<BR><IMG SRC='" . ($Product->imageUrl) . "'>";
-echo "</TD><TD>";
-echo "<H3>" . ($Product->name) . "</H3><BR>";
-echo "<DIV ID='longDescription'>" . $Product->longDescription . "</DIV>";
+echo "</TD><TD style='padding-left:20px'>";
+echo "<H3>" . ($Product->name) . "</H3><div class='divider'></div>";
+echo ($Product->shortDescription) . "<div class='divider'></div>";
+echo"<H1>Price:</H1> $" . ($Product->price) . "<div class='divider'></div>";
+echo"<H1>Weight:</H1> " . ($Product->weight) . " kg. <div class='divider'></div>";
+echo "<H1>Product Details:</H1><DIV ID='longDescription'>" . $Product->longDescription . "</DIV> <div class='divider'></div>";
+
+echo "<form id = 'buyer' action='addtocart.php' method='POST' style='float:right'>
+
+        <CENTER>
+        <img src='http://www.inmotionhosting.com/support/images/stories/icons/ecommerce/empty-cart-dark.png' width='50px' align='right'>
+        <label for='addtocart'>Qty:</label>
+        <INPUT type='number' name='quantity' id='addtocart' class ='text ui-widget-content ui-corner-all' style='width:50px;' min='1'  max='9999' value='1' ><br>
+        <button><div style='font-size:10px; color:#666666'>ADD TO CART.</div></button> 
+        <Input type='text' name='productid' value='$productid' style='display:none'>
+        </CENTER>
+
+      </form>";
+
 echo "</TD></TR></TABLE>";
+
 ?>
+
+
 
 </div>
 
