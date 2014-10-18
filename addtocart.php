@@ -97,20 +97,6 @@ border-bottom-left-radius: 50px;
         <?php
             
             function addToCart(){
-                echo "    <div id='navigation'>
-    
-        <a href='/'>home
-        <img src='https://openclipart.org/image/800px/svg_to_png/14720/abadr_Highway.png' height='20px'></a>
-        <a href='/'>account
-        <img src='http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png' height='20px'></a>
-        <a href='/'>products
-        <img src='http://pngimg.com/upload/cherry_PNG623.png' height='20px'></a>
-        <a href='/'>cart
-        <img src='http://www.robmcintosh.ca/images/shoppingCart.png' height='20px'></a>
-    
-    </div>";
-                echo "<center>
-                <h3>Thank you for your purchase!</h3>";
                 global $quantity;
                 global $productid;
                 global $mysqli;
@@ -118,22 +104,38 @@ border-bottom-left-radius: 50px;
                 $Results = mysqli_query($mysqli, $QryStr) or
                     die("Failed Query $QryStr: " . mysqli_error($mysqli));
                 $Product = mysqli_fetch_object($Results);
-                echo "<b>ITEM:</b>" . ($Product->name) . " | <b>QUANTITY:</B> $quantity <BR><BR><BR>";
-                echo "<img src='http://img4.wikia.nocookie.net/__cb20140901153102/villains/images/2/29/783564-seryu.png' width='500px'>";
 
-                // Add to database
+                 // Add to database
                 //NOTE: Add actual session id 
                 $QryStr = "INSERT INTO CartDetails (pid, sessionId, numberProduct, price) 
-                VALUES (($Product->pid), '6', $quantity, ($Product->price))";
+                VALUES (($Product->pid), '6', $quantity, ($Product->price))
+                ON DUPLICATE KEY UPDATE numberProduct = (numberProduct + $quantity);";
                 echo "<BR>";
                 mysqli_query($mysqli,$QryStr) or
                     die("Failed query - $QryStr\n" . mysqli_error($mysqli));
 
+                echo "    
+                <div id='navigation'>
+                <a href='/'>home
+                <img src='https://openclipart.org/image/800px/svg_to_png/14720/abadr_Highway.png' height='20px'></a>
+                <a href='/'>account
+                <img src='http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png' height='20px'></a>
+                <a href='/'>products
+                <img src='http://pngimg.com/upload/cherry_PNG623.png' height='20px'></a>
+                <a href='/'>cart
+                <img src='http://www.robmcintosh.ca/images/shoppingCart.png' height='20px'></a>
+                </div>";
+                echo "<center>
+                <h3>Thank you for your purchase!</h3>";
+                echo "<b>ITEM:</b>" . ($Product->name) . " | <b>QUANTITY:</B> $quantity <BR><BR><BR>";
+                echo "<img src='http://img4.wikia.nocookie.net/__cb20140901153102/villains/images/2/29/783564-seryu.png' width='500px'>";
+
             }
 
             function goAway(){
-                echo "<center>
-                <h3>You're not supposed to be here?!</h3>";
+                echo "<center><div style='margin-bottom:100px'></div>
+                <h3>You're not supposed to be here?!";
+                echo "<BR><a href='/'>BACK</a></h3><BR>";
                 echo "<img src='http://38.media.tumblr.com/4779af3321681dae15d8e157f0282c08/tumblr_na5qkjpLT11txsff9o5_r2_500.gif' width='500px'>";
             }
 
