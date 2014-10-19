@@ -15,9 +15,9 @@ $mysqli=mysqli_connect("csdb.wheaton.edu","kayley_lane", "82606", "Csci371FruitR
 if (mysqli_connect_error())
     die("Failed to connect - " . mysqli_connect_error());
 
-echo "<img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tumblr_inline_ndp93rb9xv1s8o8qm.png' align='left' height='100px'>
+echo "<img src='https://31.media.tumblr.com/98cb398bf85e6a4838a18b57a763a3c7/tumblr_inline_ndpd2dbrBJ1s8o8qm.png' align='left' height='75px'>
       <div id='navigation'>      
-          <div style=' padding-right:193px;'>
+          <div style='padding-right:315px;'>
             <a href='/' title='Go back to the splash page.'>Home
             <img src='http://www.wpclipart.com/signs_symbol/shapes/Road_ribbon_T.png'></a>
             <a href='/' title='Edit your account settings.'>My Account
@@ -28,17 +28,19 @@ echo "<img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tum
             <img src='http://www.robmcintosh.ca/images/shoppingCart.png'></a>
           </div>
       </div> ";
+
+echo "<a href='/'><div id='bottomlogo'><img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tumblr_inline_ndp93rb9xv1s8o8qm.png'></div></a>";
 ?>
 
 <style type="text/css">
 #navigation{
     width: 100%;
-    height: 100px;
+    height: 75px;
     text-align: center;
     background: #FFFFFF; /* old browsers */
     background: -moz-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%); /* firefox */
     border-top: 1px solid #dfdfdf;
-    border-bottom: 1px solid #949494;
+    border-bottom: 1px solid #cccccc;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#CCCCCC)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#CCCCCC',GradientType=0 ); /* ie */
     -webkit-border-radius: 20px;
@@ -47,7 +49,7 @@ echo "<img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tum
 }
     
 #navigation a{
-        line-height: 102px;
+    line-height: 77px;
     margin-left: 45px;
     color: #393939; -webkit-transition:all .2s ease-in-out;
     -o-transition:all .2s;
@@ -69,5 +71,13 @@ echo "<img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tum
     
 #navigation img{
     height: 30px;
+}
+    
+#bottomlogo{
+    position: fixed;
+    bottom: 5px; right:  5px;     
+}
+#bottomlogo img{
+    height: 50px;
 }
 </style>
