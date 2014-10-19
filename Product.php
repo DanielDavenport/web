@@ -10,7 +10,7 @@ include_once "head.php";
 
 <title> Buy me! </title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<link rel="shortcut icon" href="http://cdn2.bigcommerce.com/n-biq04i/8f8spg/products/124/images/445/Banana__64657.1405319161.125.100.jpg?c=2">
+<link rel="shortcut icon" href="http://ecigepoch.com/images/mango-ejuicem.png">
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?fam
 ily=Oswald">
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='st
