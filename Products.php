@@ -1,25 +1,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
-
-//Redirect to index if useri sn't logged in
-//session_start();
-//if (!(isset($_SESSION['UserName']) || isset($LoginPage)))
-//header("Location: http://cs.wheaton.edu/~kayley.lane/index.php");
-
-//connect
-$mysqli=mysqli_connect("csdb.wheaton.edu","kayley_lane", "82606", "Csci371FruitRoad");
-if (mysqli_connect_error())
-    die("Failed to connect - " . mysqli_connect_error());
-
-?>
-
-
 <head>
+<?php include_once "head.php" ?>
    
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <title> blonic original character do not steal </title>
@@ -29,20 +11,10 @@ rempb/Icons/MonsterGirls/tinycyclops.png">
  <!-- JQUERY -->
 <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-
-    $(function () {
-
-    });
-
-
-</script>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?fam
 ily=Oswald">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='st
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='st
 ylesheet' type='text/css'>
-
 <style type="text/css">
 
 ::-webkit-scrollbar-thumb:vertical {background-color:#ffffff;height:15px;}
@@ -54,30 +26,21 @@ a:hover { color: #2c2c2c; text-decoration:none}
 a:active { color: #000000; text-decoration: none}
 
 body{
-background-color:#ffffff;
-font-family: arial;
-color:#2f2f2f;
+    background-color:#ffffff;
+    font-family: arial;
+    color:#2f2f2f;
 }
-
 
 #contain2{
-margin-left:auto; margin-right:auto;
-text-align: center; 
-font-size:10px;
-color:#3d3d3d;
-padding-top:10px;
-padding-left:10px;
-padding-right:10px;
-padding-bottom:10px;
-background-color: transparent;
-}
-
-#contain2 h2{
-    font-family:Lato;
-    font-size:16px;
-    letter-spacing:-1px;
-    text-transform:uppercase;
-    font-style:italic;
+    margin-left:auto; margin-right:auto;
+    text-align: center; 
+    font-size:10px;
+    color:#3d3d3d;
+    padding-top:10px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:10px;
+    background-color: transparent;
 }
 
 #title{
@@ -94,6 +57,7 @@ background-color: transparent;
     letter-spacing:2px;
     text-transform:uppercase;
 }
+    
 #underneath a{
     color:#000000;
 }
@@ -101,7 +65,6 @@ background-color: transparent;
 #underneath a:hover{
     font-style:italic;
 }
-
 
 h1{
     font-size:14px; font-style:italic; font-family:georgia;
@@ -127,61 +90,17 @@ h3{
 .shortDescription{
    height: 50px; width: 70px; overflow: auto;
    font-size: 10px; color: #757575;
-}
-    
-#navigation{
-        font-size:16px;
-    width: 100%;
-    height: 25px;
-    padding-top: 5px;
-    text-align: center;
-    background-color: #000000;
-    -webkit-border-bottom-right-radius: 50px;
--webkit-border-bottom-left-radius: 50px;
--moz-border-radius-bottomright: 50px;
--moz-border-radius-bottomleft: 50px;
-border-bottom-right-radius: 50px;
-border-bottom-left-radius: 50px;     
-}
-    
-#navigation a{
-        margin-left: 35px;
-        color: #cccccc;
-        font-family: Verdana;
-        font-style: italic;
-    }
-    
-#navigation a:hover{
-        color: #ffffff;
-    }
+}   
 
 </style><meta http-equiv="x-dns-prefetch-control" content="off"/><script type="text/javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?_v=83c002e9bd947a7c3a044efdde3ef9c0"></script><meta http-equiv="x-dns-prefetch-control
 " content="off"/></head>
 
 <body>
-
-    <div id="navigation">
-    
-        <a href="/">home
-        <img src="https://openclipart.org/image/800px/svg_to_png/14720/abadr_Highway.png" height="20px"></a>
-        <a href="/">account
-        <img src="http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png" height="20px"></a>
-        <a href="/">products
-        <img src="http://pngimg.com/upload/cherry_PNG623.png" height="20px"></a>
-        <a href="/">cart
-        <img src="http://www.robmcintosh.ca/images/shoppingCart.png" height="20px"></a>
-    
-    </div>
-    
 <div id="contain2">
-
 <div id="title">Products</div>
 <div id="underneath">
 <a href="/">home</a> </div>
-
-
 <?php
-
 $products = array();
 $result = array();
 $searchtext = "";
@@ -190,7 +109,6 @@ $displaytext = "";
 $QryStr = "SELECT * FROM Products";
 $Results = mysqli_query($mysqli, $QryStr) or
     die("Failed Query $QryStr: " . mysqli_error($mysqli));
-
 
 while ($Obj = mysqli_fetch_object($Results)){
         array_push($products, $Obj);
@@ -219,7 +137,7 @@ if(isset($_GET['displaymode']))
     $displaymode = "standard";
 }
 
-
+// Sort works by sorting all products into a certain order before the result array is displayed.
 function fixMode(){
     global $result;
     global $products;
@@ -239,7 +157,7 @@ function fixMode(){
     }
 }
 
-
+// Search displays all results with names containing the search string.
 function search(){
     global $result;
     global $products;
@@ -254,7 +172,6 @@ function search(){
 }
 
 //Display the search form.
-
 $sortoptions = array(
     "standard" => "Mysterious",
     "alphabetical" => "Alphabetical (A-Z)",
@@ -263,32 +180,23 @@ $sortoptions = array(
     "weight" => "Weight"
 );
 
-
-echo "<BR><form id = 'searcher' action='' method='get'>
-
-    <fieldset>
+echo "<BR><form id = 'searcher' action='' method='get'><fieldset>
         <label for='searchbar'>Search:</label>
         <input type='text' name='search' id='searchbar' class ='text ui-widget-content ui-corner-all' maxlength='40' value='" . $searchtext . "'>
-
         <label for='displaymode'>Sort by:</label>
         <select name='displaymode' id='displaymode' class='text ui-widget-content ui-corner-all'>";
-
 
 foreach( $sortoptions as $var => $interest ){
     $isselected = "";
     if(strcmp ( $var , $displaytext ) == 0){
         $isselected = "selected = 'selected'";
-     }
-                echo "<option value = '$var' $isselected> $interest </option>";
-        }
-echo "
-        </select>
+    }
+    echo "<option value = '$var' $isselected> $interest </option>";
+}
 
-        <button class ='text ui-widget-content ui-corner-all' >Go!</button>
-    </fieldset>
-
-</form> ";
-
+echo " </select>
+    <button class ='text ui-widget-content ui-corner-all' >Go!</button>
+    </fieldset></form> ";
 
 //Display products.
     echo "<TABLE ALIGN='center'><TR>";
@@ -368,15 +276,8 @@ function sortArrayofObjectByProperty( $array, $property )
     return $array;
 
 }
-
-
 ?>
-
-
-
 </div>
-
-
 
 </body>
 </html>
