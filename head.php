@@ -46,6 +46,7 @@ echo "<a href='/'><div id='bottomlogo'><img src='https://31.media.tumblr.com/ebe
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
+    white-space: nowrap;
 }
     
 #navigation a{
