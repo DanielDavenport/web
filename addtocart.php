@@ -1,22 +1,15 @@
 
-
-
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?fam
+ily=Oswald">
+<link rel="shortcut icon" href="http://s25.postimg.org/atayg9upn/image.png">
+<title>We love you!</title> 
 <?php
 
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
+include_once "head.php";
 
-//Redirect to index if useri sn't logged in
-//session_start();
-//if (!(isset($_SESSION['UserName']) || isset($LoginPage)))
-//header("Location: http://cs.wheaton.edu/~kayley.lane/index.php");
-
-//connect
-$mysqli=mysqli_connect("csdb.wheaton.edu","kayley_lane", "82606", "Csci371FruitRoad");
-if (mysqli_connect_error())
-    die("Failed to connect - " . mysqli_connect_error());
-
+//Is everything necessary to make the SQL Query included or did the user get here from the wrong page?
 $fail = FALSE;
 
 if(isset($_POST['productid']))
@@ -40,11 +33,7 @@ else addToCart();
 
 ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?fam
-ily=Oswald">
-<title>We love you!</title> 
-    <style type="text/css">
+<style type="text/css">
 a:link { color: #000000; text-decoration: none}
 a:visited { color: #000000; text-decoration: none}
 a:hover { color: #2c2c2c; text-decoration:none}
@@ -62,36 +51,8 @@ h3{
     font-size:24px;
     color:#000000;
 }
-
-#navigation{
-        font-size:16px;
-    margin-bottom:100px;
-    width: 100%;
-    height: 25px;
-    padding-top: 5px;
-    text-align: center;
-    background-color: #000000;
-    -webkit-border-bottom-right-radius: 50px;
--webkit-border-bottom-left-radius: 50px;
--moz-border-radius-bottomright: 50px;
--moz-border-radius-bottomleft: 50px;
-border-bottom-right-radius: 50px;
-border-bottom-left-radius: 50px;     
-}
-    
-#navigation a{
-        margin-left: 35px;
-        color: #cccccc;
-        font-family: Verdana;
-        font-style: italic;
-    }
-    
-#navigation a:hover{
-        color: #ffffff;
-    }
-    </style>
+</style>
 </head>
-
 <body>
 
         <?php
@@ -113,18 +74,6 @@ border-bottom-left-radius: 50px;
                 echo "<BR>";
                 mysqli_query($mysqli,$QryStr) or
                     die("Failed query - $QryStr\n" . mysqli_error($mysqli));
-
-                echo "    
-                <div id='navigation'>
-                <a href='/'>home
-                <img src='https://openclipart.org/image/800px/svg_to_png/14720/abadr_Highway.png' height='20px'></a>
-                <a href='/'>account
-                <img src='http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png' height='20px'></a>
-                <a href='/'>products
-                <img src='http://pngimg.com/upload/cherry_PNG623.png' height='20px'></a>
-                <a href='/'>cart
-                <img src='http://www.robmcintosh.ca/images/shoppingCart.png' height='20px'></a>
-                </div>";
                 echo "<center>
                 <h3>Thank you for your purchase!</h3>";
                 echo "<b>ITEM:</b>" . ($Product->name) . " | <b>QUANTITY:</B> $quantity <BR><BR><BR>";
