@@ -34,10 +34,6 @@ else addToCart();
 ?>
 
 <style type="text/css">
-a:link { color: #000000; text-decoration: none}
-a:visited { color: #000000; text-decoration: none}
-a:hover { color: #2c2c2c; text-decoration:none}
-a:active { color: #000000; text-decoration: none}
 
 body{
     background-color:#ffffff;
@@ -66,10 +62,25 @@ h3{
                     die("Failed Query $QryStr: " . mysqli_error($mysqli));
                 $Product = mysqli_fetch_object($Results);
 
-                 // Add to database
-                //NOTE: Add actual session id 
+                if(isset($_SESSION['username']))
+                {
+                    $sesid = session_id();
+
+                } else {
+                    $sesid = 11;
+                }
+
+                //NOTE: By this point, there should already be a MyCart value with the sessionId in the table. 
+                //The following is just in case.
+                $result = mysqli_query($mysqli, "SELECT * FROM MyCart WHERE sessionId = $sesid") or
+                    die("Failed Query: " . mysqli_error($mysqli));
+                if(mysqli_num_rows($result)<=0){
+                    mysqli_query($mysqli, "INSERT INTO MyCart (sessionId) VALUES ($sesid)") or
+                    die("Failed Query: " . mysqli_error($mysqli));
+                }
+
                 $QryStr = "INSERT INTO CartDetails (pid, sessionId, numberProduct, price) 
-                VALUES (($Product->pid), '6', $quantity, ($Product->price))
+                VALUES (($Product->pid), $sesid, $quantity, ($Product->price))
                 ON DUPLICATE KEY UPDATE numberProduct = (numberProduct + $quantity);";
                 echo "<BR>";
                 mysqli_query($mysqli,$QryStr) or
@@ -82,7 +93,7 @@ h3{
             }
 
             function goAway(){
-                echo "<center><div style='margin-bottom:100px'></div>
+                echo "<center>
                 <h3>You're not supposed to be here?!";
                 echo "<BR><a href='/'>BACK</a></h3><BR>";
                 echo "<img src='http://38.media.tumblr.com/4779af3321681dae15d8e157f0282c08/tumblr_na5qkjpLT11txsff9o5_r2_500.gif' width='500px'>";
