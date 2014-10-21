@@ -8,12 +8,12 @@ session_start();
 if (!(isset($_SESSION['username']) || isset($LoginPage)))
 header("Location: Login.html");
 
-$username = $POST['username'];
+$username = $_SESSION['username'];
 
 echo "<div id='welcome'>
     Welcome back,
     <div id='welcometitle'>$username!</div>
-    <a href='Login.html' style='font-size:9px; color:#cccccc'><i>Not you?</i></a>
+    <a href='Login.html' style='font-size:9px; color:#cccccc'>Not you?</a>
     </div>";
 
 //connect
