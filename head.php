@@ -12,8 +12,8 @@ $username = $POST['username'];
 
 echo "<div id='welcome'>
     Welcome back,
-    <div id='welcometitle'>$username</div>
-    <a href='Login.html' style='font-size:9px; color:#cccccc'>Not you?</a>
+    <div id='welcometitle'>$username!</div>
+    <a href='Login.html' style='font-size:9px; color:#cccccc'><i>Not you?</i></a>
     </div>";
 
 //connect
