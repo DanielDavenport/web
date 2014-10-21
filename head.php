@@ -1,14 +1,20 @@
 <?php
-//echo "Here";
-//exit;
 ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
 error_reporting(-1);
 
-//Redirect to index if useri sn't logged in
+//Redirect to index if userisn't logged in
 session_start();
 if (!(isset($_SESSION['username']) || isset($LoginPage)))
 header("Location: Login.html");
+
+$username = $POST['username'];
+
+echo "<div id='welcome'>
+    Welcome back,
+    <div id='welcometitle'>$username</div>
+    <a href='Login.html' style='font-size:9px; color:#cccccc'>Not you?</a>
+    </div>";
 
 //connect
 $mysqli=mysqli_connect("csdb.wheaton.edu","kayley_lane", "82606", "Csci371FruitRoad");
@@ -33,6 +39,26 @@ echo "<a href='/'><div id='bottomlogo'><img src='https://31.media.tumblr.com/ebe
 ?>
 
 <style type="text/css">
+::-webkit-scrollbar-thumb:vertical {background-color:#ffffff;height:15px;}
+::-webkit-scrollbar {height:0px;width:1px;background-color:#ffffff;}
+
+a:link { color: #000000; text-decoration: none}
+a:visited { color: #000000; text-decoration: none}
+a:hover { color: #2c2c2c; text-decoration:none}
+a:active { color: #000000; text-decoration: none}
+    
+#welcome{
+    text-align: right;
+    font-family: Arial;
+    font-size: 11px;
+    color:#5d5d5d;   
+}
+#welcometitle{
+    color: #000000;
+    font-size: 14px;
+    display: inline;
+    font-weight: bold;
+}
 #navigation{
     width: 100%;
     height: 75px;
