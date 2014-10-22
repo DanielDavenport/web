@@ -21,7 +21,7 @@
     }
     $i=0;
     foreach($pname as $name){
-        $allresults[$i][1] = $name;
+        $allresults[$i][1] = addslashes($name);
         $i++;
     }
     $i=0;
@@ -36,22 +36,22 @@
     }
     $i=0;
     foreach($picon as $icon){
-        $allresults[$i][4] = $icon;
+        $allresults[$i][4] = addslashes($icon);
         $i++;
     }
     $i=0;
     foreach($pimage as $image){
-        $allresults[$i][5] = $image;
+        $allresults[$i][5] = addslashes($image);
         $i++;
     }
     $i=0;
     foreach($pshort as $short){
-        $allresults[$i][6] = $short;
+        $allresults[$i][6] = addslashes($short);
         $i++;
     }
     $i=0;
     foreach($plong as $long){
-        $allresults[$i][7] = $long;
+        $allresults[$i][7] = addslashes($long);
         $i++;
     }
 
