@@ -10,10 +10,12 @@
     $pshort = addslashes($_POST['ashort']);
     $plong = addslashes($_POST['along']);
 
+    if( !isset( $_POST['aname']) )
+        header("Location: /");
+
     // Insert row
-    // NOTE: PID should be autoincrement, then this pid below is removed.
-    $QryStr = "INSERT INTO Products (pid, name, shortDescription, longDescription, thumbnailUrl, imageUrl, price, weight) 
-    VALUES ('20', '$pname', '$pshort', '$plong', '$picon', '$pimage', '$pprice', '$pweight')";
+    $QryStr = "INSERT INTO Products (name, shortDescription, longDescription, thumbnailUrl, imageUrl, price, weight) 
+    VALUES ('$pname', '$pshort', '$plong', '$picon', '$pimage', '$pprice', '$pweight')";
 
     mysqli_query($mysqli,$QryStr) or
         die("Failed query - $QryStr\n" . mysqli_error($mysqli));
