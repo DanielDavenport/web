@@ -16,6 +16,15 @@ Taylor:
 - Account Info Page
 - Registration Page
 
+Conner:
+- Splash Screen
+
 Josh:
+- Triggers Before Delete/Update
+
+Daniel and Josh:
 - Cart
 - Checkout
+
+Daniel:
+- Output report in terminal using JDBC
