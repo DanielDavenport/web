@@ -18,6 +18,8 @@ Taylor:
 
 Conner:
 - Splash Screen
+- Admin Page
+- Authenticate Php
 
 Josh:
 - Triggers Before Delete/Update
