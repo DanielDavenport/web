@@ -14,8 +14,20 @@ rempb/Icons/MonsterGirls/tinycyclops.png">
 <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
         $("#submiteditproducts").button();
+        $("#submitaddproduct").button();
+        $("#showaddproduct").button();
+        $("#showeditproducts").button();
+        $("#addproductform").hide();
+
+        $("#showaddproduct").click(function () {
+            $("#addproductform").toggle(300);
+        });
+        $("#showeditproducts").click(function () {
+            $("#editproductsform").toggle(300);
+        });
+
     });
 </script>
     <!-- CSS -->
@@ -48,7 +60,7 @@ body{
 }
 
 
-#title{
+.title{
     font-family:Lato;
     font-size:20px;
     letter-spacing:2px;
@@ -56,18 +68,18 @@ body{
     text-decoration:underline;
 }
 
-#underneath{
+.underneath{
     font-family:verdana;
     font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
 }
     
-#underneath a{
+.underneath a{
     color:#000000;
 }
 
-#underneath a:hover{
+.underneath a:hover{
     font-style:italic;
 }
 
@@ -80,15 +92,43 @@ body{
 
 <body>
 <div id="contain2">
-<div id="title">Edit Products</div>
-<div id="underneath">
+<div class="title"> Add Products</div>
+<div class="underneath">
 <!-- SHOULD LINK TO ADMIN EDIT PAGE! -->
 <a href="/">back</a> </div>
+<button id="showaddproduct">SHOW/HIDE</button>
+
+<FORM action="submitaddproduct.php" METHOD="POST" id="addproductform">
+    <TABLE ALIGN="center" style="font-size:10px"><TR><td>
+<label>Name:</label></TD><TD>
+<input type="text" name="aname" class ='text ui-widget-content ui-corner-all' maxlength='50'></TD></TR><TR><TD>
+<label>Price:</label></TD><TD>
+<input type="text" name="aprice" class ='text ui-widget-content ui-corner-all' maxlength='10'></TD></TR><TR><TD>
+<label>Weight:</label></TD><TD>
+<input type="text" name="aweight" class ='text ui-widget-content ui-corner-all' maxlength='10'></TD></TR><TR><TD>
+<label>Icon URL:</label></TD><TD>
+<input type="text" name="aicon" class ='text ui-widget-content ui-corner-all'></TD></TR><TR><TD>  
+<label>Image URL:</label></TD><TD>
+<input type="text" name="aimage" class ='text ui-widget-content ui-corner-all'></TD></TR><TR><TD>        
+<label>Desc(Short):</label></TD><TD>
+<input type="text" name="ashort" class ='text ui-widget-content ui-corner-all'></TD></TR><TR><TD>          
+<label>Desc(Long):</label></TD><TD>
+<textarea rows="4" cols="18" style="resize: none;" name="along" class ='text ui-widget-content ui-corner-all'></textarea>
+    </td></tr></TABLE>
+    <button id="submitaddproduct">Add Product</button>
+</FORM>
+
+<br><br><div class="title">Edit Products</div>
+<div class="underneath">
+<!-- SHOULD LINK TO ADMIN EDIT PAGE! -->
+<a href="/">back</a> </div>
+<button id="showeditproducts">SHOW/HIDE</button>
+<div id="editproductsform">
 <?php
 include_once "getproducts.php";
 
 //Display products.
-    echo "<FORM action='submiteditproducts.php' METHOD='POST' id='editproductform'><TABLE ALIGN='center' style'font-size:10px'><TR>";
+    echo "<FORM action='submiteditproducts.php' METHOD='POST'><TABLE ALIGN='center' style'font-size:10px'><TR>";
     $i = 0;
     foreach($result as $Object){
         $iden = $Object->pid; 
@@ -117,10 +157,12 @@ include_once "getproducts.php";
                 . ($Object->imageUrl) . "'></input>";
         echo "</TD></TR><TR><TD>
                 <label for='fshort'>Desc(Short):</label></TD><TD>
-                <input type='text' class ='text ui-widget-content ui-corner-all' name='fshort[]' id='fshort' value='" . $Object -> shortDescription . "'></TD></TR>";
-        echo "</TD></TR><TR><TD>
-                <label for='flong'>Desc(Long):</label></TD><TD>
-                <input type='text' class ='text ui-widget-content ui-corner-all' name='flong[]' id='flong' value='" . $Object -> longDescription . "'></TD></TR>";        
+                <input type='text' class ='text ui-widget-content ui-corner-all' name='fshort[]' id='fshort' value='" . ($Object -> shortDescription) . "'></TD></TR>";
+        //Description breaks if it contains the " character! Gah!
+        $longDescription = ($Object -> longDescription);
+        echo '</TD></TR><TR><TD>
+                <label for="flong">Desc(Long):</label></TD><TD>
+                <input type="text" class ="text ui-widget-content ui-corner-all" name="flong[]" id="flong" value="' . $longDescription . '"></TD></TR>';        
         echo "<TR><TD>
             <input type='checkbox' name='delete[]' id='delete' value='$iden'><b>Delete?</b><br>";
         echo "</TR></TD></TABLE>";
@@ -135,7 +177,7 @@ include_once "getproducts.php";
     echo "</FORM>";
 
 ?>
-</div>
+</div></div>
 
 </body>
 </html>
