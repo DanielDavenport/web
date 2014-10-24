@@ -27,6 +27,10 @@ rempb/Icons/MonsterGirls/tinycyclops.png">
         $("#showeditproducts").click(function () {
             $("#editproductsform").toggle(300);
         });
+        $("#bottomlogo").append("<div id='bottomscroll'>Scroll Down</div>");
+        $("#bottomscroll").click(function () {
+            window.scrollTo(0,document.body.scrollHeight);
+        });
 
     });
 </script>
@@ -41,6 +45,14 @@ body{
     background-color:#ffffff;
     font-family: arial;
     color:#2f2f2f;
+}
+
+#bottomscroll{
+    background-color:#cccccc; border-radius:50px; text-align:center; padding-top:2px; padding-bottom:2px; margin-top:2px; font-size:10px; text-transform:uppercase; font-weight:bold;
+}
+
+#bottomscroll:hover{
+    cursor: crosshair;
 }
 
 #contain2{
@@ -83,9 +95,6 @@ body{
     font-style:italic;
 }
 
-.icon:hover{
-    cursor: crosshair;
-}
     
 </style><meta http-equiv="x-dns-prefetch-control" content="off"/><script type="text/javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?_v=83c002e9bd947a7c3a044efdde3ef9c0"></script><meta http-equiv="x-dns-prefetch-control
 " content="off"/></head>
@@ -113,7 +122,7 @@ body{
 <label>Desc(Short):</label></TD><TD>
 <input type="text" name="ashort" class ='text ui-widget-content ui-corner-all'></TD></TR><TR><TD>          
 <label>Desc(Long):</label></TD><TD>
-<textarea rows="4" cols="18" style="resize: none;" name="along" class ='text ui-widget-content ui-corner-all'></textarea>
+<textarea rows="4" style="resize: none; width:136px;" name="along" class ='text ui-widget-content ui-corner-all'></textarea>
     </td></tr></TABLE>
     <button id="submitaddproduct">Add Product</button>
 </FORM>
@@ -133,8 +142,14 @@ include_once "getproducts.php";
     echo "<FORM action='submiteditproducts.php' METHOD='POST'><TABLE ALIGN='center' style'font-size:10px'><TR>";
     $i = 0;
     foreach($result as $Object){
-        if($Object->inStock == '1') $selected = "checked";
-        else $selected = "";
+        if($Object->inStock == '1'){
+	 $selected = "checked";
+	 $permissions = "readonly";
+        }
+        else{
+	 $selected = "";
+	 $permissions = "";
+        }
 
         $iden = $Object->pid; 
         echo "<input type='text' name='fpid[]' style='display:none' value='$iden'>";
@@ -143,33 +158,33 @@ include_once "getproducts.php";
         echo "<TABLE><TR><TD>";
         $name = (is_null($Object->name) ? "&nbsp;here" : $Object->name);
         echo "<label for='fname'>Name:</label></TD><TD>";
-        echo "<input type='text' name='fname[]' id='fname' class ='text ui-widget-content ui-corner-all' maxlength='50' value='" . $name ."'>";
+        echo "<input type='text' name='fname[]' id='fname' class ='text ui-widget-content ui-corner-all' maxlength='50' value='" . $name ."' $permissions>";
         echo "</TD></TR><TR><TD>
                 <label for='fname'>Price:</label></TD><TD>
                 <input type='text' name='fprice[]' id='fprice' class ='text ui-widget-content ui-corner-all' maxlength='10' value='" 
-                . ($Object->price) . "'></input>";
+                . ($Object->price) . "' $permissions></input>";
         echo "</TD></TR><TR><TD>
                 <label for='fweight'>Weight:</label></TD><TD>
                 <input type='text' name='fweight[]' id='fweight' class ='text ui-widget-content ui-corner-all' maxlength='10' value='" 
-                . ($Object->weight) . "'></input>";
+                . ($Object->weight) . "' $permissions></input>";
         echo "</TD></TR><TR><TD>
                 <label for='ficon'>Icon:</label></TD><TD>
                 <input type='text' name='ficon[]' id='ficon' class ='text ui-widget-content ui-corner-all' value='" 
-                . ($Object->thumbnailUrl) . "'></input>";
+                . ($Object->thumbnailUrl) . "' $permissions></input>";
         echo "</TD></TR><TR><TD>
                 <label for='fimage'>Image:</label></TD><TD>
                 <input type='text' name='fimage[]' id='fimage' class ='text ui-widget-content ui-corner-all' value='" 
-                . ($Object->imageUrl) . "'></input>";
+                . ($Object->imageUrl) . "' $permissions></input>";
         echo "</TD></TR><TR><TD>
                 <label for='fshort'>Desc(Short):</label></TD><TD>
-                <input type='text' class ='text ui-widget-content ui-corner-all' name='fshort[]' id='fshort' value='" . ($Object -> shortDescription) . "'></TD></TR>";
+                <input type='text' class ='text ui-widget-content ui-corner-all' name='fshort[]' id='fshort' value='" . ($Object -> shortDescription) . "' $permissions></TD></TR>";
         
         $longDescription = htmlspecialchars(($Object -> longDescription));
-        echo '</TD></TR><TR><TD>
-                <label for="flong">Desc(Long):</label></TD><TD>
-                <input type="text" class ="text ui-widget-content ui-corner-all" name="flong[]" id="flong" value="' . $longDescription . '"></TD></TR>';        
+        echo "</TD></TR><TR><TD>
+                <label for='flong'>Desc(Long):</label></TD><TD>
+                <input type='text' class ='text ui-widget-content ui-corner-all' name='flong[]' id='flong' value='" . $longDescription . "' $permissions></TD></TR>";        
         echo "<TR><TD>
-            <input type='checkbox' name='delete[]' id='delete' value='delete' $selected><b>Delete?</b><br>";
+            <input type='checkbox' name='delete[]' id='delete' value='$i' $selected><b>Delete?</b><br>";
         echo "</TR></TD></TABLE>";
 
         echo "</TD>";
