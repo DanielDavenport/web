@@ -76,6 +76,6 @@
                     die("Failed query - $QryStr\n" . mysqli_error($mysqli));
     }
 
-    header("Location: /");
+    header("Location: Products.php");
 
 ?>

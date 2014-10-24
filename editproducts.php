@@ -178,7 +178,7 @@ include_once "getproducts.php";
         if($i % 3 == 0) echo "</TR><TR>";
     }
     echo "</TABLE>";
-    echo "<button id='submiteditproducts'>SUBMIT</button>";
+    echo "<button  id='submiteditproducts'>SUBMIT</button>";
     echo "</FORM>";
 
 
