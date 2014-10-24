@@ -81,7 +81,7 @@
         color: #C79200;
 
     }
-    img,iframe{
+    #image img,iframe{
         padding:3px;
         background-color: #C79200;
 
@@ -99,24 +99,12 @@
 </style>
 
 
-<body onload="AdminCheck(); clockTick(); setInterval(function(){clockTick();time() }, 1000 )">
+<body onload="clockTick(); setInterval(function(){clockTick();time() }, 1000 )">
 
 <div>
- <div style="float: left; width: 300px;">
+
      <image src="http://img3.wikia.nocookie.net/__cb20071019155930/uncyclopedia/images/7/7b/Dancing_banana.gif"  ></image>
      <p id ="title"> FRUITY ROAD</p>
- </div>
- <div style="float: left; width: 100px;">
-    <ul>
-        <li><a href="products.php">Fruits</a></li>
-        <li><a href="cart.php">Cart</a></li>
-        <li><a href="updateInfo.php">Account</a></li>
-        <li><a href="logout.php">Logout</a></li>
-        <li><a id="admin" href="AdminUpdateProducts.php">Admin</a></li>
-    </ul>
- </div>
-
- <br style="clear: left;" />
 </div>
 
 
@@ -146,7 +134,7 @@ APPLES!
 
 <p>
  GRAPES!
-<image src="http://images.santu.com/2876/grapes_13621922962518.jpg"  ></image>
+<image id="image" src="http://images.santu.com/2876/grapes_13621922962518.jpg"  ></image>
 </p>
 
 

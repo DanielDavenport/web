@@ -27,18 +27,19 @@ if (mysqli_connect_error())
 echo "<img src='https://31.media.tumblr.com/98cb398bf85e6a4838a18b57a763a3c7/tumblr_inline_ndpd2dbrBJ1s8o8qm.png' align='left' height='75px'>
       <div id='navigation'>      
           <div style='padding-right:315px;'>
-            <a href='Splash.html' title='Go back to the splash page.'>Home
+            <a href='Splash.php' title='Go back to the splash page.'>Home
             <img src='http://www.wpclipart.com/signs_symbol/shapes/Road_ribbon_T.png'></a>
-            <a href='/' title='Edit your account settings.'>My Account
+            <a href='Splash.php' title='Edit your account settings.'>My Account
             <img src='http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png'></a>
             <a href='Products.php' title='Shop for delicious fruit.'>Products
             <img src='http://img-fotki.yandex.ru/get/6521/136487634.71c/0_af09e_64e2ef9c_L'></a>
-            <a href='/' title='View and edit your cart or check out.'>Cart
+            <a href='Splash.php' title='View and edit your cart or check out.'>Cart
             <img src='http://www.robmcintosh.ca/images/shoppingCart.png'></a>
+	    <a href='Admin.php' title='admin only'>Admin</a>
           </div>
       </div> ";
 
-echo "<a href='/'><div id='bottomlogo'><img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tumblr_inline_ndp93rb9xv1s8o8qm.png'></div></a>";
+echo "<a href='Splash.php'><div id='bottomlogo'><img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tumblr_inline_ndp93rb9xv1s8o8qm.png'></div></a>";
 ?>
 
 <style type="text/css">
@@ -66,12 +67,12 @@ a:active { color: #000000; text-decoration: none}
     width: 100%;
     height: 75px;
     text-align: center;
-    background: #FFFFFF; /* old browsers */
-    background: -moz-linear-gradient(top, #FFFFFF 0%, #CCCCCC 100%); /* firefox */
-    border-top: 1px solid #dfdfdf;
-    border-bottom: 1px solid #cccccc;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#CCCCCC)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#CCCCCC',GradientType=0 ); /* ie */
+    background: #FAB700; /* old browsers */
+    background: -moz-linear-gradient(top, #C79200 0%, #FAB700 100%); /* firefox */
+    border-top: 1px solid #FAB700;
+    border-bottom: 1px solid #FAB700;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C79200), color-stop(100%,#FAB700)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C79200', endColorstr='#FAB700',GradientType=0 ); /* ie */
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -81,7 +82,7 @@ a:active { color: #000000; text-decoration: none}
 #navigation a{
     line-height: 77px;
     margin-left: 45px;
-    color: #393939; -webkit-transition:all .2s ease-in-out;
+    color: black; -webkit-transition:all .2s ease-in-out;
     -o-transition:all .2s;
     -moz-transition:all .2s;
     -ms-transition:all .2s;
