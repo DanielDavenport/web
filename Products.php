@@ -1,12 +1,10 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <?php include_once "head.php" ?>
    
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<title> blonic original character do not steal </title>
-<link rel="shortcut icon" href="http://i1144.photobucket.com/albums/o488/incarce
-rempb/Icons/MonsterGirls/tinycyclops.png">
+<title> An Assortment of Fruits </title>
+<link rel="shortcut icon" href="http://www.juicebeauty.com/store/media/juice-beauty/ingredients/organic-pomegranate.jpg">
 
  <!-- JQUERY -->
 <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
@@ -93,7 +91,7 @@ h3{
 <div id="underneath">
 <a href="/">home</a> </div>
 <?php
-
+$QryStr = "SELECT * FROM Products WHERE inStock = '0'";
 include_once "getproducts.php";
 
 //Display products.
