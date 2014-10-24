@@ -125,12 +125,17 @@ body{
 <button id="showeditproducts">SHOW/HIDE</button>
 <div id="editproductsform">
 <?php
+
+$QryStr = "SELECT * FROM Products";
 include_once "getproducts.php";
 
 //Display products.
     echo "<FORM action='submiteditproducts.php' METHOD='POST'><TABLE ALIGN='center' style'font-size:10px'><TR>";
     $i = 0;
     foreach($result as $Object){
+        if($Object->inStock == '1') $selected = "checked";
+        else $selected = "";
+
         $iden = $Object->pid; 
         echo "<input type='text' name='fpid[]' style='display:none' value='$iden'>";
         echo "<TD>";
@@ -158,13 +163,13 @@ include_once "getproducts.php";
         echo "</TD></TR><TR><TD>
                 <label for='fshort'>Desc(Short):</label></TD><TD>
                 <input type='text' class ='text ui-widget-content ui-corner-all' name='fshort[]' id='fshort' value='" . ($Object -> shortDescription) . "'></TD></TR>";
-        //Description breaks if it contains the " character! Gah!
-        $longDescription = ($Object -> longDescription);
+        
+        $longDescription = htmlspecialchars(($Object -> longDescription));
         echo '</TD></TR><TR><TD>
                 <label for="flong">Desc(Long):</label></TD><TD>
                 <input type="text" class ="text ui-widget-content ui-corner-all" name="flong[]" id="flong" value="' . $longDescription . '"></TD></TR>';        
         echo "<TR><TD>
-            <input type='checkbox' name='delete[]' id='delete' value='$iden'><b>Delete?</b><br>";
+            <input type='checkbox' name='delete[]' id='delete' value='delete' $selected><b>Delete?</b><br>";
         echo "</TR></TD></TABLE>";
 
         echo "</TD>";
@@ -175,6 +180,7 @@ include_once "getproducts.php";
     echo "</TABLE>";
     echo "<button id='submiteditproducts'>SUBMIT</button>";
     echo "</FORM>";
+
 
 ?>
 </div></div>
