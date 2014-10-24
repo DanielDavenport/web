@@ -8,7 +8,10 @@ session_start();
 if (!(isset($_SESSION['username']) || isset($LoginPage)))
 header("Location: Login.html");
 
-$username = $_SESSION['username'];
+//Will definitely be set, just for testing purposes.
+if((isset($_SESSION['username'])))
+    $username = $_SESSION['username'];
+else $username = "Username";
 
 echo "<div id='welcome'>
     Welcome back,
@@ -24,11 +27,11 @@ if (mysqli_connect_error())
 echo "<img src='https://31.media.tumblr.com/98cb398bf85e6a4838a18b57a763a3c7/tumblr_inline_ndpd2dbrBJ1s8o8qm.png' align='left' height='75px'>
       <div id='navigation'>      
           <div style='padding-right:315px;'>
-            <a href='/' title='Go back to the splash page.'>Home
+            <a href='Splash.html' title='Go back to the splash page.'>Home
             <img src='http://www.wpclipart.com/signs_symbol/shapes/Road_ribbon_T.png'></a>
             <a href='/' title='Edit your account settings.'>My Account
             <img src='http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png'></a>
-            <a href='/' title='Shop for delicious fruit.'>Products
+            <a href='Products.php' title='Shop for delicious fruit.'>Products
             <img src='http://img-fotki.yandex.ru/get/6521/136487634.71c/0_af09e_64e2ef9c_L'></a>
             <a href='/' title='View and edit your cart or check out.'>Cart
             <img src='http://www.robmcintosh.ca/images/shoppingCart.png'></a>
