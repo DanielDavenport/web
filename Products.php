@@ -103,7 +103,7 @@ include_once "getproducts.php";
     foreach($result as $Object){
         $iden = $Object->pid; 
         echo "<TD><CENTER>";
-        echo "<BR><a href='PHPPage.php?productid=" . $iden ."'><img src='" . $Object -> thumbnailUrl . "' width='100px' align='left' class='icon'></a></TD><TD>";
+        echo "<BR><a href='Product.php?productid=" . $iden ."'><img src='" . $Object -> thumbnailUrl . "' width='100px' align='left' class='icon'></a></TD><TD>";
         echo (is_null($Object->name) ? "&nbsp;here" : $Object->name);
         echo "<BR><B> $" . ($Object->price) . "</B>";
         echo "<BR><div class='shortDescription'>" . $Object -> shortDescription . "</div>";
