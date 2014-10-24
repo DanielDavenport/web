@@ -1,9 +1,14 @@
 <?php
     include_once "head.php";
-
+ 
     $allresults = array( array() );
-
+ 
     $pid = $_POST['fpid'];
+
+    //Make sure you got here from the right place.
+    if( !isset( $_POST['fpid']) )
+    header("Location: Login.html");
+ 
     $pname = $_POST['fname'];
     $pprice = $_POST['fprice'];
     $pweight = $_POST['fweight'];
@@ -12,7 +17,7 @@
     $pshort = $_POST['fshort'];
     $plong = $_POST['flong'];
     $total = 0;
-
+ 
     $i=0;
     foreach($pid as $pno){
         $allresults[$i][0] = $pno;
@@ -54,28 +59,26 @@
         $allresults[$i][7] = addslashes($long);
         $i++;
     }
-
-    $i=0;
-    for($z = 0; $z < $total; $z++){
+ 
+    for($z = 0; $z < $total; $z++)
         $allresults[$z][8] = 0;
-    }
     if(isset($_POST['delete'])){
         $pdelete = $_POST['delete'];
-        foreach($pdelete as $del){
-            $allresults[$del][8] = 1;
-            $i++;
-        }
+        foreach($pdelete as $delete){
+	echo "$delete";
+		$allresults[$delete][8] = 1;	
+	}
     }
+	
 
-    $z=0;
+
     foreach ($allresults as $i => $row)
     {
-        //UPDATE DELETE FIELD TOO WHEN MADE.
-        $QryStr = "UPDATE Products SET name = '$row[1]', price = '$row[2]', weight='$row[3]', thumbnailUrl='$row[4]', imageUrl='$row[5]', shortDescription='$row[6]', longDescription='$row[7]' WHERE pid = '$row[0]'";
+        $QryStr = "UPDATE Products SET name = '$row[1]', price = '$row[2]', weight='$row[3]', thumbnailUrl='$row[4]', imageUrl='$row[5]', shortDescription='$row[6]', longDescription='$row[7]', inStock='$row[8]' WHERE pid = '$row[0]'";
         mysqli_query($mysqli,$QryStr) or
                     die("Failed query - $QryStr\n" . mysqli_error($mysqli));
     }
-
-    header("Location: Products.php");
-
+ 
+    header("Location: Products.php"); 
+ 
 ?>
