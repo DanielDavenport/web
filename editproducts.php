@@ -6,9 +6,7 @@
 <?php include_once "head.php" ?>
    
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<title> blonic original character do not steal </title>
-<link rel="shortcut icon" href="http://i1144.photobucket.com/albums/o488/incarce
-rempb/Icons/MonsterGirls/tinycyclops.png">
+<title> Edit Products </title>
 
  <!-- JQUERY -->
 <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
@@ -104,7 +102,7 @@ body{
 <div class="title"> Add Products</div>
 <div class="underneath">
 <!-- SHOULD LINK TO ADMIN EDIT PAGE! -->
-<a href="/">back</a> </div>
+<a href="Splash.php">back</a> </div>
 <button id="showaddproduct">SHOW/HIDE</button>
 
 <FORM action="submitaddproduct.php" METHOD="POST" id="addproductform">
@@ -130,7 +128,7 @@ body{
 <br><br><div class="title">Edit Products</div>
 <div class="underneath">
 <!-- SHOULD LINK TO ADMIN EDIT PAGE! -->
-<a href="/">back</a> </div>
+<a href="Splash.php">back</a> </div>
 <button id="showeditproducts">SHOW/HIDE</button>
 <div id="editproductsform">
 <?php
@@ -156,9 +154,11 @@ include_once "getproducts.php";
         echo "<TD>";
         echo "<BR><img src='" . $Object -> thumbnailUrl . "' width='100px' align='left' class='icon'></TD><TD>";
         echo "<TABLE><TR><TD>";
-        $name = (is_null($Object->name) ? "&nbsp;here" : $Object->name);
+        $name = htmlspecialchars((is_null($Object->name) ? "&nbsp;here" : $Object->name));
+        $shortDescription = htmlspecialchars(($Object -> shortDescription));
+        $longDescription = htmlspecialchars(($Object -> longDescription));
         echo "<label for='fname'>Name:</label></TD><TD>";
-        echo "<input type='text' name='fname[]' id='fname' class ='text ui-widget-content ui-corner-all' maxlength='50' value='" . $name ."' $permissions>";
+        echo '<input type="text" name="fname[]" id="fname" class ="text ui-widget-content ui-corner-all" maxlength="50" value="' . $name .'" $permissions>';
         echo "</TD></TR><TR><TD>
                 <label for='fname'>Price:</label></TD><TD>
                 <input type='text' name='fprice[]' id='fprice' class ='text ui-widget-content ui-corner-all' maxlength='10' value='" 
@@ -175,14 +175,12 @@ include_once "getproducts.php";
                 <label for='fimage'>Image:</label></TD><TD>
                 <input type='text' name='fimage[]' id='fimage' class ='text ui-widget-content ui-corner-all' value='" 
                 . ($Object->imageUrl) . "' $permissions></input>";
-        echo "</TD></TR><TR><TD>
-                <label for='fshort'>Desc(Short):</label></TD><TD>
-                <input type='text' class ='text ui-widget-content ui-corner-all' name='fshort[]' id='fshort' value='" . ($Object -> shortDescription) . "' $permissions></TD></TR>";
-        
-        $longDescription = htmlspecialchars(($Object -> longDescription));
-        echo "</TD></TR><TR><TD>
-                <label for='flong'>Desc(Long):</label></TD><TD>
-                <input type='text' class ='text ui-widget-content ui-corner-all' name='flong[]' id='flong' value='" . $longDescription . "' $permissions></TD></TR>";        
+        echo '</TD></TR><TR><TD>
+                <label for="fshort">Desc(Short):</label></TD><TD>
+                <input type="text" class ="text ui-widget-content ui-corner-all" name="fshort[]" id="fshort" value="' . $shortDescription . '" $permissions></TD></TR>';
+        echo '</TD></TR><TR><TD>
+                <label for="flong">Desc(Long):</label></TD><TD>
+                <input type="text" class ="text ui-widget-content ui-corner-all" name="flong[]" id="flong" value="' . $longDescription . '" $permissions></TD></TR>';        
         echo "<TR><TD>
             <input type='checkbox' name='delete[]' id='delete' value='$i' $selected><b>Delete?</b><br>";
         echo "</TR></TD></TABLE>";
