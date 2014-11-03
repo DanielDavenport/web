@@ -96,6 +96,16 @@
         margin-left:39%;
         margin-right:39%
     }
+    
+    #navigation{
+    background: #FAB700; /* old browsers */
+    background: -moz-linear-gradient(top, #C79200 0%, #FAB700 100%); /* firefox */
+    border-top: 1px solid #FAB700;
+    border-bottom: 1px solid #FAB700;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C79200), color-stop(100%,#FAB700)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C79200', endColorstr='#FAB700',GradientType=0 ); /* ie */
+	}
+	
 </style>
 
 

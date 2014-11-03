@@ -1,12 +1,10 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <?php include_once "head.php" ?>
    
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<title> blonic original character do not steal </title>
-<link rel="shortcut icon" href="http://i1144.photobucket.com/albums/o488/incarce
-rempb/Icons/MonsterGirls/tinycyclops.png">
+<title> An Assortment of Fruits </title>
+<link rel="shortcut icon" href="http://www.juicebeauty.com/store/media/juice-beauty/ingredients/organic-pomegranate.jpg">
 
  <!-- JQUERY -->
 <script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
@@ -84,6 +82,7 @@ h3{
    font-size: 10px; color: #757575;
 }   
 
+
 </style><meta http-equiv="x-dns-prefetch-control" content="off"/><script type="text/javascript" src="http://assets.tumblr.com/assets/scripts/tumblelog.js?_v=83c002e9bd947a7c3a044efdde3ef9c0"></script><meta http-equiv="x-dns-prefetch-control
 " content="off"/></head>
 
@@ -91,9 +90,9 @@ h3{
 <div id="contain2">
 <div id="title">Products</div>
 <div id="underneath">
-<a href="/">home</a> </div>
+<a href="Splash.php">home</a> </div>
 <?php
-
+$QryStr = "SELECT * FROM Products WHERE inStock = '0'";
 include_once "getproducts.php";
 
 //Display products.
@@ -103,7 +102,7 @@ include_once "getproducts.php";
     foreach($result as $Object){
         $iden = $Object->pid; 
         echo "<TD><CENTER>";
-        echo "<BR><a href='PHPPage.php?productid=" . $iden ."'><img src='" . $Object -> thumbnailUrl . "' width='100px' align='left' class='icon'></a></TD><TD>";
+        echo "<BR><a href='Product.php?productid=" . $iden ."'><img src='" . $Object -> thumbnailUrl . "' width='100px' align='left' class='icon'></a></TD><TD>";
         echo (is_null($Object->name) ? "&nbsp;here" : $Object->name);
         echo "<BR><B> $" . ($Object->price) . "</B>";
         echo "<BR><div class='shortDescription'>" . $Object -> shortDescription . "</div>";

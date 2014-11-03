@@ -103,7 +103,7 @@ h3{
 
 <div id="title">Product</div>
 <div id="underneath">
-<a href="/">home</a></div>
+<a href="Splash.php">home</a></div>
 
 <?php
 

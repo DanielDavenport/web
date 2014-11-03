@@ -9,7 +9,8 @@ $result = array();
 $searchtext = "";
 $displaytext = "";
 
-$QryStr = "SELECT * FROM Products";
+if (!isset($QryStr)) $QryStr = "SELECT * FROM Products";
+
 $Results = mysqli_query($mysqli, $QryStr) or
     die("Failed Query $QryStr: " . mysqli_error($mysqli));
 
@@ -66,12 +67,15 @@ function search(){
     global $products;
     $result = array();
     global $search;
+    $i=0;
     foreach($products as $Object){
         //Find all occurances of the search string in our product database. 
         if(strpos(strtolower ($Object->name), strtolower($search)) !== FALSE){
             array_push($result, $Object);
+            $i++;
         }
     }
+    echo "Search returned <B>$i</B> results.<BR>";
 }
 
 //Display the search form.

@@ -35,11 +35,12 @@ echo "<img src='https://31.media.tumblr.com/98cb398bf85e6a4838a18b57a763a3c7/tum
             <img src='http://img-fotki.yandex.ru/get/6521/136487634.71c/0_af09e_64e2ef9c_L'></a>
             <a href='Splash.php' title='View and edit your cart or check out.'>Cart
             <img src='http://www.robmcintosh.ca/images/shoppingCart.png'></a>
-	    <a href='Admin.php' title='admin only'>Admin</a>
+	    <a href='Admin.php' title='admin only'>Admin 
+            <img src='http://img1.wikia.nocookie.net/__cb20110520055935/walkthrough/images/thumb/3/33/Important_circle.png/100px-0,201,0,200-Important_circle.png'></a> 
           </div>
       </div> ";
 
-echo "<a href='Splash.php'><div id='bottomlogo'><img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tumblr_inline_ndp93rb9xv1s8o8qm.png'></div></a>";
+echo "<div id='bottomlogo'><a href='Splash.php'><img src='https://31.media.tumblr.com/ebed233fbab7fed04641d3ff77307760/tumblr_inline_ndp93rb9xv1s8o8qm.png'></a></div>";
 ?>
 
 <style type="text/css">
@@ -64,15 +65,15 @@ a:active { color: #000000; text-decoration: none}
     font-weight: bold;
 }
 #navigation{
-    width: 100%;
+    width: 100%; 
     height: 75px;
     text-align: center;
     background: #FAB700; /* old browsers */
-    background: -moz-linear-gradient(top, #C79200 0%, #FAB700 100%); /* firefox */
-    border-top: 1px solid #FAB700;
-    border-bottom: 1px solid #FAB700;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C79200), color-stop(100%,#FAB700)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C79200', endColorstr='#FAB700',GradientType=0 ); /* ie */
+    background: -moz-linear-gradient(top, #CCCCCC 0%, #FFFFFF 100%); /* firefox */
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #C4C4C4;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#CCCCCC), color-stop(100%,#FFFFFF)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CCCCCC', endColorstr='#FFFFFF',GradientType=0 ); /* ie */
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
