@@ -33,7 +33,7 @@ echo "<img src='https://31.media.tumblr.com/98cb398bf85e6a4838a18b57a763a3c7/tum
             <img src='http://png-2.findicons.com/files/icons/1254/flurry_system/128/users.png'></a>
             <a href='Products.php' title='Shop for delicious fruit.'>Products
             <img src='http://img-fotki.yandex.ru/get/6521/136487634.71c/0_af09e_64e2ef9c_L'></a>
-            <a href='Splash.php' title='View and edit your cart or check out.'>Cart
+            <a href='Cart.php' title='View and edit your cart or check out.'>Cart
             <img src='http://www.robmcintosh.ca/images/shoppingCart.png'></a>
 	    <a href='Admin.php' title='admin only'>Admin 
             <img src='http://img1.wikia.nocookie.net/__cb20110520055935/walkthrough/images/thumb/3/33/Important_circle.png/100px-0,201,0,200-Important_circle.png'></a> 
