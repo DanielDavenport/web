@@ -2,6 +2,9 @@
 <?php
     include_once "head.php";
 
+    if(!isset($_POST['aname']))
+        header("Location: Products.php");
+
     $pname = addslashes($_POST['aname']);
     $pprice = addslashes($_POST['aprice']);
     $pweight = addslashes($_POST['aweight']);
@@ -10,16 +13,19 @@
     $pshort = addslashes($_POST['ashort']);
     $plong = addslashes($_POST['along']);
 
-    if( !isset( $_POST['aname']) )
-        header("Location: /");
+    echo "PNAME: $pname";
 
-    // Insert row
-    $QryStr = "INSERT INTO Products (name, shortDescription, longDescription, thumbnailUrl, imageUrl, price, weight) 
-    VALUES ('$pname', '$pshort', '$plong', '$picon', '$pimage', '$pprice', '$pweight')";
+    if( $pname == "" || ctype_space ($pname) ) 
+        header("Location: editproducts.php");
+    else{
+        // Insert row
+        $QryStr = "INSERT INTO Products (name, shortDescription, longDescription, thumbnailUrl, imageUrl, price, weight) 
+        VALUES ('$pname', '$pshort', '$plong', '$picon', '$pimage', '$pprice', '$pweight')";
 
-    mysqli_query($mysqli,$QryStr) or
-        die("Failed query - $QryStr\n" . mysqli_error($mysqli));
+        mysqli_query($mysqli,$QryStr) or
+            die("Failed query - $QryStr\n" . mysqli_error($mysqli));
 
-    header("Location: editproducts.php");
+       header("Location: editproducts.php");
+    }
 
 ?>
